@@ -3,7 +3,7 @@ name: first workflow
 on: push
 
 jobs:
-  job1:
+  ascii_job:
     runs-on: ubuntu-latest
     steps:
       - name: checkout repo
@@ -14,6 +14,21 @@ jobs:
           echo "my first workflow"
           ls 
           cat README.md
+      - name: install cowsay
+        run: sudo apt-get install cowsay -y
+
+      
       - name: generate ASCII artwork
         run: cowsay -f dragon "run for cover, i am a dragon" >> dragon.txt
+      
+      - name: test file exist
+        run: grep -i "dragon" dragon.txt
+
+      - name: read file
+        run: cat dragon.txt
+        
+      - name: list repo files
+        run: ls -ltra
+
+
 
